@@ -5,6 +5,7 @@ import com.springbds.SpringBDS.service.LocalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/locals")
@@ -18,9 +19,23 @@ public class LocalController {
         return localService.findAllLocals();
     }
 
-    @GetMapping("/{id}")
-    public Local findLocalById(@PathVariable Long id) {
-        return localService.findLocalById(id);
+    /*
+    @GetMapping("/{name}")
+    public Optional<Local> findLocalByNameWithJPQL(@PathVariable String name) {
+        return localService.findLocalByNameWithJPQL(name);
+    }
+    */
+
+    /*
+    @GetMapping("/{name}")
+    public Optional<Local> findLocalByName(@PathVariable String name) {
+        return localService.findLocalByName(name);
+    }
+    */
+
+    @GetMapping("/{name}")
+    public Optional<Local> findLocalByNameIgnoreCase(@PathVariable String name) {
+        return localService.findLocalByNameIgnoreCase(name);
     }
 
     @PostMapping

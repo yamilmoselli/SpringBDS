@@ -5,6 +5,7 @@ import com.springbds.SpringBDS.repository.LocalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LocalServiceImpl implements LocalService {
@@ -17,9 +18,21 @@ public class LocalServiceImpl implements LocalService {
         return localRepository.findAll();
     }
 
+    /*
     @Override
-    public Local findLocalById(Long id) {
-        return localRepository.findById(id).orElseThrow(() -> new RuntimeException("Local not found"));
+    public Optional<Local> findLocalByNameWithJPQL(String name) {
+        return localRepository.findLocalByNameWithJPQL(name);
+    }
+    */
+
+    @Override
+    public Optional<Local> findLocalByName(String name) {
+        return localRepository.findByName(name);
+    }
+
+    @Override
+    public Optional<Local> findLocalByNameIgnoreCase(String name) {
+        return localRepository.findByNameIgnoreCase(name);
     }
 
     @Override
