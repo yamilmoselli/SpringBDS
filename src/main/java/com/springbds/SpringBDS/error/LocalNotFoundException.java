@@ -1,9 +1,7 @@
 package com.springbds.SpringBDS.error;
 
-public class LocalNotFoundException extends Exception{
-
+public class LocalNotFoundException extends RuntimeException {
     public LocalNotFoundException(String message) {
         super(message);
     }
-
 }

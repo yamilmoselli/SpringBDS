@@ -1,6 +1,7 @@
 package com.springbds.SpringBDS.controller;
 
 import com.springbds.SpringBDS.entity.Local;
+import com.springbds.SpringBDS.error.LocalNotFoundException;
 import com.springbds.SpringBDS.service.LocalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +35,9 @@ public class LocalController {
     */
 
     @GetMapping("/{name}")
-    public Optional<Local> findLocalByNameIgnoreCase(@PathVariable String name) {
-        return localService.findLocalByNameIgnoreCase(name);
+    public Local findLocalByNameIgnoreCase(@PathVariable String name) {
+        return localService.findLocalByNameIgnoreCase(name)
+                .orElseThrow(() -> new LocalNotFoundException("Local named '" + name + "' not found"));
     }
 
     @PostMapping
