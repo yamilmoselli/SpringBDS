@@ -13,17 +13,21 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Anotacion para tests de integracion/la capa de servicios/toda la app.
+// Levanta toodo el contexto de Spring Boot (controladores, servicios, repositorios, etc)
 @SpringBootTest
 class LocalServiceTest {
 
     @Autowired
-    LocalService localService;
+    private LocalService localService;
+
     @MockitoBean
-    LocalRepository localRepository;
+    private LocalRepository localRepository;
 
     @BeforeEach
     void setUp() {
         Local local = Local.builder()
+                .id(1L)
                 .name("Mostaza")
                 .floor(6)
                 .code("mz006")

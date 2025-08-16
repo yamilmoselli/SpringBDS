@@ -13,6 +13,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Levanta SOLO lo necesario de JPA
 @DataJpaTest
 class LocalRepositoryTest {
 
