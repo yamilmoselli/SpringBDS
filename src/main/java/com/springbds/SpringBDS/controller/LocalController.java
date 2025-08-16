@@ -3,6 +3,7 @@ package com.springbds.SpringBDS.controller;
 import com.springbds.SpringBDS.entity.Local;
 import com.springbds.SpringBDS.error.LocalNotFoundException;
 import com.springbds.SpringBDS.service.LocalService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -41,7 +42,7 @@ public class LocalController {
     }
 
     @PostMapping
-    public Local saveLocal(@RequestBody Local local) {
+    public Local saveLocal(@Valid @RequestBody Local local) {
         return localService.saveLocal(local);
     }
 

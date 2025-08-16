@@ -17,4 +17,5 @@ public interface LocalRepository extends JpaRepository<Local, Long> {
     // Para consultas simples, ya estan hechas por Spring Data
     Optional<Local> findByName(String name);
     Optional<Local> findByNameIgnoreCase(String name);
+
 }
