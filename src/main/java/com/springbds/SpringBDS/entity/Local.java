@@ -2,11 +2,17 @@ package com.springbds.SpringBDS.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
+
+
 
 @Entity
-@Table(name = "locals")
+@Table(name = "locals",
+        uniqueConstraints = {
+            @UniqueConstraint(name = "unique_name", columnNames = "name"),
+            @UniqueConstraint(name = "unique_code", columnNames = "code")
+        })
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,10 +22,17 @@ public class Local {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotBlank(message = "Empty name is not valid")
+
+    @NotBlank(message = "Name can not be empty")
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "floor", nullable = false)
     private Integer floor;
-    @Length(min = 2, max = 10)
+
+    @NotBlank(message = "Code can not be empty")
+    @Column(name = "code", nullable = false)
+    @Size(min = 2, max = 10)
     private String code;
 
 }

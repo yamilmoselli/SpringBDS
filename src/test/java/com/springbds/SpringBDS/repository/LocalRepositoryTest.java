@@ -19,6 +19,7 @@ class LocalRepositoryTest {
 
     @Autowired
     LocalRepository localRepository;
+
     @Autowired
     TestEntityManager testEntityManager;
 
