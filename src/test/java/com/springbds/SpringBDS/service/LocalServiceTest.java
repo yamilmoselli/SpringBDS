@@ -20,7 +20,7 @@ class LocalServiceTest {
 
     @Autowired
     private LocalService localService;
-
+    
     @MockitoBean
     private LocalRepository localRepository;
 
