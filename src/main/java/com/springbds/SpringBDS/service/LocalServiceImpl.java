@@ -1,6 +1,7 @@
 package com.springbds.SpringBDS.service;
 
 import com.springbds.SpringBDS.entity.Local;
+import com.springbds.SpringBDS.entity.Manager;
 import com.springbds.SpringBDS.repository.LocalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,13 +18,6 @@ public class LocalServiceImpl implements LocalService {
     public List<Local> findAllLocals() {
         return localRepository.findAll();
     }
-
-    /*
-    @Override
-    public Optional<Local> findLocalByNameWithJPQL(String name) {
-        return localRepository.findLocalByNameWithJPQL(name);
-    }
-    */
 
     @Override
     public Optional<Local> findLocalByName(String name) {
@@ -46,6 +40,12 @@ public class LocalServiceImpl implements LocalService {
         localDb.setName(local.getName());
         localDb.setFloor(local.getFloor());
         localDb.setCode(local.getCode());
+        return localRepository.save(localDb);
+    }
+
+    public Local updateLocalsManager(Long id, Manager manager) {
+        Local localDb = localRepository.findById(id).orElseThrow(() -> new RuntimeException("Local not found"));
+        localDb.setManager(manager);
         return localRepository.save(localDb);
     }
 

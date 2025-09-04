@@ -35,4 +35,8 @@ public class Local {
     @Size(min = 2, max = 10)
     private String code;
 
+    @OneToOne
+    @JoinColumn(name = "manager_id", referencedColumnName = "manager_id")
+    private Manager manager;
+
 }

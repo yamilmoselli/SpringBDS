@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "customers",
-        uniqueConstraints =
-            @UniqueConstraint(name = "unique_dni", columnNames = "dni"))
+        uniqueConstraints = @UniqueConstraint(name = "unique_costumer_dni", columnNames = "costumer_dni"))
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,7 +34,7 @@ public class Customer {
     private String country;
 
     @NotBlank
-    @Column(name = "dni", nullable = false)
+    @Column(name = "costumer_dni", nullable = false)
     @Size(min = 7, max = 9)
     private String dni;
 

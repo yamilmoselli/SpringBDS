@@ -1,6 +1,7 @@
 package com.springbds.SpringBDS.controller;
 
 import com.springbds.SpringBDS.entity.Local;
+import com.springbds.SpringBDS.entity.Manager;
 import com.springbds.SpringBDS.error.LocalNotFoundException;
 import com.springbds.SpringBDS.service.LocalService;
 import jakarta.validation.Valid;
@@ -21,20 +22,6 @@ public class LocalController {
         return localService.findAllLocals();
     }
 
-    /*
-    @GetMapping("/{name}")
-    public Optional<Local> findLocalByNameWithJPQL(@PathVariable String name) {
-        return localService.findLocalByNameWithJPQL(name);
-    }
-    */
-
-    /*
-    @GetMapping("/{name}")
-    public Optional<Local> findLocalByName(@PathVariable String name) {
-        return localService.findLocalByName(name);
-    }
-    */
-
     @GetMapping("/{name}")
     public Local findLocalByNameIgnoreCase(@PathVariable String name) {
         return localService.findLocalByNameIgnoreCase(name)
@@ -49,6 +36,11 @@ public class LocalController {
     @PutMapping("/{id}")
     public Local updateLocal(@PathVariable Long id, @RequestBody Local local) {
         return localService.updateLocal(id, local);
+    }
+
+    @PatchMapping("/{id}/updateManager")
+    public Local updateLocalsManager(@PathVariable Long id, @RequestBody Manager manager) {
+        return localService.updateLocalsManager(id, manager);
     }
 
     @DeleteMapping("/{id}")
