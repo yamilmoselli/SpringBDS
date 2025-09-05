@@ -2,10 +2,7 @@ package com.springbds.SpringBDS.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "managers",
@@ -14,6 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+// This annotation helps to stop the infinite cycle when printing a Local due to toString() method in Lombok.
+// Is recommended to write this annotation in the child's class (the one who has mappedBy=..).
+@ToString(exclude = "local")
 public class Manager {
 
     @Id
@@ -32,6 +32,10 @@ public class Manager {
     @NotBlank(message = "Empty dni is not valid")
     @Column(name = "manager_dni", nullable = false)
     private String dni;
+
+    // "manager" references to attribute "private Manager manager" in Local class.
+    @OneToOne(mappedBy = "manager")
+    private Local local;
 
 
 }

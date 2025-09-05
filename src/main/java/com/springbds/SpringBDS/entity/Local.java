@@ -35,8 +35,11 @@ public class Local {
     @Size(min = 2, max = 10)
     private String code;
 
+    // With nullable=true, when I create a local, its manager would be null.
+    // But then I have to set that attribute, sending a manager entire object.
+    // This is a way to reduce coupling between these two tables.
     @OneToOne
-    @JoinColumn(name = "manager_id", referencedColumnName = "manager_id")
+    @JoinColumn(name = "manager_id", referencedColumnName = "manager_id", nullable = true)
     private Manager manager;
 
 }
