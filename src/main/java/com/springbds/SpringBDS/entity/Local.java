@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-
+import java.util.List;
 
 
 @Entity
@@ -20,7 +20,7 @@ import lombok.*;
 public class Local {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @NotBlank(message = "Name can not be empty")
@@ -38,8 +38,14 @@ public class Local {
     // With nullable=true, when I create a local, its manager would be null.
     // But then I have to set that attribute, sending a manager entire object.
     // This is a way to reduce coupling between these two tables.
+    // name = .. is the name who would be on the column
+    // referencedColumnName is the attribute name on class manager
     @OneToOne
-    @JoinColumn(name = "manager_id", referencedColumnName = "manager_id", nullable = true)
+    @JoinColumn(name = "manager_id", referencedColumnName = "managerId", nullable = true)
     private Manager manager;
+
+    @OneToMany
+    @JoinColumn(name = "order_id", referencedColumnName = "orderId")
+    private List<Order> orderList;
 
 }

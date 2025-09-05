@@ -17,9 +17,9 @@ import lombok.*;
 public class Manager {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "manager_id")
-    private Long id;
+    private Long managerId;
 
     @NotBlank(message = "Empty first name is not valid")
     @Column(name = "manager_first_name", nullable = false)

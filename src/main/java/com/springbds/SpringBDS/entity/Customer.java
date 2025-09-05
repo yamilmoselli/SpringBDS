@@ -18,15 +18,15 @@ import lombok.NoArgsConstructor;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @NotBlank
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "customer_first_name", nullable = false)
     private String firstName;
 
     @NotBlank
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "customer_last_name", nullable = false)
     private String lastName;
 
     @NotBlank
