@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 // Order is a reserved word in postgresql
-@Table(name = "tbl_order")
+@Table(name = "tbl_orders")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,4 +26,8 @@ public class Order {
 
     @Column(name = "total_price")
     private Double totalPrice;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_local_id")
+    private Local local;
 }

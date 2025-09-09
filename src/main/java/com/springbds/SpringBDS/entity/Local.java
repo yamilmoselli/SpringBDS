@@ -39,13 +39,11 @@ public class Local {
     // But then I have to set that attribute, sending a manager entire object.
     // This is a way to reduce coupling between these two tables.
     // name = .. is the name who would be on the column
-    // referencedColumnName is the attribute name on class manager
     @OneToOne
-    @JoinColumn(name = "manager_id", referencedColumnName = "managerId", nullable = true)
+    @JoinColumn(name = "fk_manager_id", nullable = true)
     private Manager manager;
 
-    @OneToMany
-    @JoinColumn(name = "order_id", referencedColumnName = "orderId")
+    @OneToMany(mappedBy = "local", cascade = CascadeType.ALL)
     private List<Order> orderList;
 
 }
