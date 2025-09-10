@@ -34,7 +34,7 @@ public class Manager {
     private String dni;
 
     // "manager" references to attribute "private Manager manager" in Local class.
-    @OneToOne(mappedBy = "manager")
+    @OneToOne(mappedBy = "manager", cascade = CascadeType.PERSIST)
     private Local local;
 
 

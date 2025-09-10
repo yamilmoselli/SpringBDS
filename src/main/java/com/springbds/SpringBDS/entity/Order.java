@@ -27,7 +27,7 @@ public class Order {
     @Column(name = "total_price")
     private Double totalPrice;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_local_id")
     private Local local;
 }
