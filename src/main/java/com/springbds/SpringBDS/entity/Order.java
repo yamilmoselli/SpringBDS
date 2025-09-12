@@ -30,4 +30,8 @@ public class Order {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_local_id")
     private Local local;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "fk_customer_id")
+    private Customer customer;
 }

@@ -8,9 +8,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "customers",
-        uniqueConstraints = @UniqueConstraint(name = "unique_costumer_dni", columnNames = "costumer_dni"))
+        uniqueConstraints = @UniqueConstraint(name = "unique_customer_dni", columnNames = "customer_dni"))
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,8 +36,11 @@ public class Customer {
     private String country;
 
     @NotBlank
-    @Column(name = "costumer_dni", nullable = false)
+    @Column(name = "customer_dni", nullable = false)
     @Size(min = 7, max = 9)
     private String dni;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orderList;
 
 }
